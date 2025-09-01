@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"queueing-system/models"
+	"queueing-system/services"
+)
 
 func main() {
-	fmt.Println("Welcome to queueing system!")
+	q := services.NewQueue(60, "db/queue.db")
+	t1 := models.Table{ID: 1}
+
+	// simulate 25 people entering queue
+	for i := 0; i < 25; i++ {
+		num := q.NextNumber(t1)
+		fmt.Print(num + "\n")
+	}
 }
