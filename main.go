@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"queueing-system/models"
 	"queueing-system/services"
+	"queueing-system/utils"
 )
 
 func main() {
@@ -11,9 +12,7 @@ func main() {
 
 	for {
 		showMainMenu()
-		var choice int
-		fmt.Print("Enter your choice: ")
-		fmt.Scan(&choice)
+		choice := utils.ReadInt("Enter your choice: ")
 		fmt.Println()
 
 		switch choice {
@@ -73,8 +72,7 @@ func updateQueue(q *services.Queue) models.Table {
 	}
 	var tableIndex int
 	for {
-		fmt.Print("\nSelect a table by number: ")
-		fmt.Scan(&tableIndex)
+		tableIndex = utils.ReadInt("\nSelect a table by number: ")
 		fmt.Println()
 		if tableIndex == 0 {
 			fmt.Println("Operation cancelled.")
